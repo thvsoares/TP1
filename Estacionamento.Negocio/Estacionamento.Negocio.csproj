@@ -39,6 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Carro.cs" />
+    <Compile Include="CommandCheckin.cs" />
+    <Compile Include="EntradaEstacionamento.cs" />
+    <Compile Include="Estacionamento.cs" />
+    <Compile Include="ICommand.cs" />
     <Compile Include="Operacoes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
