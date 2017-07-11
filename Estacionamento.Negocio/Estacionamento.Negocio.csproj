@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Carro.cs" />
     <Compile Include="CommandCheckin.cs" />
+    <Compile Include="CommandCheckout.cs" />
     <Compile Include="EntradaEstacionamento.cs" />
     <Compile Include="Estacionamento.cs" />
     <Compile Include="ICommand.cs" />
