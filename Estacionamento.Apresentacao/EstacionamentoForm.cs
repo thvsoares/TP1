@@ -13,45 +13,51 @@ namespace Estacionamento.Apresentacao
 {
     public partial class EstacionamentoForm : Form
     {
+        private ICommand<Carro, string> _commandCheckin;
+
+        private ICommand<string, string> _commandCheckout;
+
         public EstacionamentoForm()
         {
             InitializeComponent();
+            _commandCheckin = new CommandCheckin();
+            _commandCheckout = new CommandCheckout();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             string placa = textBox1.Text;
+            var dto = new Carro() { Placa = placa };
 
-            try
+            _commandCheckin.Argumento = dto;
+
+            if (_commandCheckin.Validar())
             {
-
-
-                Operacoes.Checkin(placa);
-
-                MessageBox.Show(String.Format("Placa '{0}' adicionada.", placa));
-                textBox1.Text = string.Empty;
-
+                _commandCheckin.Executar();
+                MessageBox.Show(_commandCheckin.Resultado);
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(_commandCheckin.Resultado, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            textBox1.Text = string.Empty;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             string placa = textBox1.Text;
 
-            try
-            {
-                var valor = Operacoes.Checkout(placa);
+            _commandCheckout.Argumento = placa;
 
-                MessageBox.Show(String.Format("Placa '{0}' valor de R${1}.", placa, valor));
-                textBox1.Text = string.Empty;
-            }
-            catch (Exception ex)
+            if (_commandCheckout.Validar())
             {
-                MessageBox.Show(ex.Message);
+                _commandCheckout.Executar();
+                MessageBox.Show(_commandCheckout.Resultado);
+            }
+            else
+            {
+                MessageBox.Show(_commandCheckout.Resultado, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

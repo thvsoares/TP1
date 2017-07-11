@@ -33,6 +33,10 @@ namespace Estacionamento.Negocio
 
             var entrada = _estacionamento.BuscarEntrada(this.Argumento);
             var valor = CalcularValorEstacionamento(entrada.Entrada, DateTime.Now);
+
+            _estacionamento.RemoverEntrada(this.Argumento);
+
+            Resultado = $"Placa '{Argumento}' valor de R${valor}.";
         }
 
         /// <summary>

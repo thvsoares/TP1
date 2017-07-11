@@ -29,6 +29,8 @@ namespace Estacionamento.Negocio
                 return;
 
             _estacionamento.AdicionarEntrada(new EntradaEstacionamento() { Carro = Argumento, Entrada = DateTime.Now });
+
+            Resultado = $"Placa '{Argumento.Placa}' adicionada.";
         }
 
         /// <summary>
